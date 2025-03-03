@@ -1,0 +1,116 @@
+/* General Styles */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Centering Content */
+.container {
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Buttons */
+.btn, .upload-btn {
+    background-color: green;
+    color: white;
+    padding: 12px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none; /* Removes underline */
+    margin: 10px;
+    display: inline-block;
+}
+
+/* Button Hover Effect */
+.btn:hover, .upload-btn:hover {
+    transform: translateY(3px);
+    box-shadow: inset 0px 2px 5px rgba(0, 255, 0, 0.5);
+}
+
+/* File Upload Section */
+.upload-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between file input and button */
+    margin-top: 20px;
+}
+
+/* File Upload Styling */
+input[type="file"] {
+    padding: 12px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Progress Bar */
+progress {
+    width: 80%;
+    height: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/* Upload Status */
+#uploadStatus {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Video Container */
+.video-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Video Element */
+video {
+    width: 90%;
+    max-width: 600px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+/* Search Bar */
+.search-bar {
+    width: 80%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    margin: 20px 0;
+}
+
+/* Request Video Form */
+.request-form {
+    margin-top: 20px;
+}
+
+/* Remove underline from links */
+a {
+    text-decoration: none;
+    color: inherit;
+}

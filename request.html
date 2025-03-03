@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Video</title>
+    <script>
+        async function requestVideo() {
+            const videoName = document.getElementById("requestName").value;
+            const statusDiv = document.getElementById("status");
+
+            if (!videoName) {
+                statusDiv.innerText = "Please enter a video name!";
+                return;
+            }
+
+            const response = await fetch("https://gebv2wj7t9.execute-api.ap-south-1.amazonaws.com/prod/request", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ videoName }),
+            });
+
+            const result = await response.json();
+            statusDiv.innerText = result.message || result.error;
+        }
+    </script>
+</head>
+<body>
+    <h2>Request Video</h2>
+    <input type="text" id="requestName" placeholder="Enter video name">
+    <button onclick="requestVideo()">Request</button>
+    <p id="status"></p>
+</body>
+</html>

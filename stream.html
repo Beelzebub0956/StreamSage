@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Video</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search & Stream Video</h1>
+        <input type="text" id="videoName" placeholder="Enter video name (with extension)">
+        <button onclick="searchVideo()">Search</button>
+        <p id="statusMessage"></p>
+        <video id="videoPlayer" controls style="display:none; width: 100%;"></video>
+        <button onclick="location.href='index.html'">Back to Home</button>
+    </div>
+
+    <script>
+        async function searchVideo() {
+            const videoName = document.getElementById("videoName").value;
+            const statusMessage = document.getElementById("statusMessage");
+            const videoPlayer = document.getElementById("videoPlayer");
+
+            if (!videoName) {
+                statusMessage.innerText = "❌ Please enter a video name!";
+                return;
+            }
+
+            try {
+                // 🔗 Request pre-signed URL from API Gateway
+                const response = await fetch("https://8wi522d4ka.execute-api.ap-south-1.amazonaws.com/dev/stream", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ fileName: videoName })
+                });
+
+                const data = await response.json();
+                if (!response.ok) throw new Error("Video not found");
+
+                // 🎥 Play video from the signed URL
+                videoPlayer.src = data.signedUrl;
+                videoPlayer.style.display = "block";
+                statusMessage.innerText = "✅ Video found! Streaming below.";
+
+            } catch (error) {
+                statusMessage.innerText = "❌ " + error.message;
+                videoPlayer.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
